@@ -1,0 +1,110 @@
+{
+  "name": "aviation-codes",
+  "version": "0.1.0",
+  "description": "Type-safe, tree-shakeable validation and lookup for IATA/ICAO airport and airline codes",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./validate": {
+      "import": {
+        "types": "./dist/validate.d.ts",
+        "default": "./dist/validate.js"
+      },
+      "require": {
+        "types": "./dist/validate.d.cts",
+        "default": "./dist/validate.cjs"
+      }
+    },
+    "./airports": {
+      "import": {
+        "types": "./dist/airports.d.ts",
+        "default": "./dist/airports.js"
+      },
+      "require": {
+        "types": "./dist/airports.d.cts",
+        "default": "./dist/airports.cjs"
+      }
+    },
+    "./airlines": {
+      "import": {
+        "types": "./dist/airlines.d.ts",
+        "default": "./dist/airlines.js"
+      },
+      "require": {
+        "types": "./dist/airlines.d.cts",
+        "default": "./dist/airlines.cjs"
+      }
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:data": "tsx scripts/build-data.ts",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit",
+    "prepublishOnly": "pnpm lint && pnpm typecheck && pnpm test:run && pnpm build"
+  },
+  "keywords": [
+    "iata",
+    "icao",
+    "airport",
+    "airline",
+    "aviation",
+    "codes",
+    "validation",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "Onspot Travel",
+  "homepage": "https://github.com/onspot-travel/aviation-codes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onspot-travel/aviation-codes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onspot-travel/aviation-codes/issues"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
+    "@size-limit/file": "^12.0.0",
+    "@types/node": "^25.0.2",
+    "@vitest/coverage-v8": "4.0.15",
+    "i18n-iso-countries": "^7.14.0",
+    "lefthook": "^2.0.11",
+    "size-limit": "^12.0.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.15"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.25.0",
+  "size-limit": [
+    {
+      "name": "total dist",
+      "path": "dist/**/*.js",
+      "limit": "4.5 MB"
+    }
+  ]
+}
